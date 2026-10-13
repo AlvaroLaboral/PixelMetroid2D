@@ -26,12 +26,11 @@ public class CtrlOctopus : MonoBehaviour
         moviendoAFin=true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<CtrlJugador>().FinJuego();
+            collision.gameObject.GetComponent<CtrlJugador>().QuitarVida();
         }
-
     }
 }

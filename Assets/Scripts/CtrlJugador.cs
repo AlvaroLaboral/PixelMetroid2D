@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,13 +8,19 @@ public class CtrlJugador : MonoBehaviour
     [SerializeField] private Rigidbody2D fisica;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private int fuerzaSalto;
+    [SerializeField] int numVidas;
+    [SerializeField] private int puntuacion;
+    [SerializeField] private string menuPrincipal = "Menu Principal";
     private Animator animacion;
+    private bool vulnerable;
+    
 
     void Awake()
     {
         fisica = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animacion = GetComponentInChildren<Animator>();
+        vulnerable = true;
     }
 
     void FixedUpdate()
@@ -52,6 +59,31 @@ public class CtrlJugador : MonoBehaviour
 
     public void FinJuego()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(menuPrincipal);
+    }
+
+    public void QuitarVida()
+    {
+        if (vulnerable)
+        {
+            vulnerable = false;
+            numVidas--;
+            if (numVidas == 0)
+                FinJuego();
+            Invoke("HacerVulnerable", 1f);
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        }
+    }
+
+    private void HacerVulnerable()
+    {
+        vulnerable=true;
+        spriteRenderer.color=Color.white;
+    }
+
+    public void IncrementarPuntos(int puntos)
+    {
+        puntuacion += puntos;
     }
 }

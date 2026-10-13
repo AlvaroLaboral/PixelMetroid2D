@@ -31,8 +31,7 @@ public class CtrlCangrejo : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<CtrlJugador>().FinJuego();
+            collision.gameObject.GetComponent<CtrlJugador>().QuitarVida();
         }
-
     }
-}
+    }
