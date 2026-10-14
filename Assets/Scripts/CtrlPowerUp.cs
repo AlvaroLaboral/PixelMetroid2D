@@ -5,7 +5,8 @@ public class CtrlPowerUp : MonoBehaviour
 {
 
     [SerializeField] private int cantidad;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    public AudioSource powerUp;
     void Start()
     {
         
@@ -22,6 +23,7 @@ public class CtrlPowerUp : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CtrlJugador>().IncrementarPuntos(cantidad);
+            powerUp.Play();
             Destroy(gameObject);
         }
 

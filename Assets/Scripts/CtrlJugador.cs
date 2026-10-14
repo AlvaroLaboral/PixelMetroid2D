@@ -11,9 +11,13 @@ public class CtrlJugador : MonoBehaviour
     [SerializeField] int numVidas;
     [SerializeField] private int puntuacion;
     [SerializeField] private string menuPrincipal = "Menu Principal";
+    [SerializeField] private GameObject panelFin;
     private Animator animacion;
     private bool vulnerable;
     
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip sonidoFin;
 
     void Awake()
     {
@@ -21,6 +25,7 @@ public class CtrlJugador : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animacion = GetComponentInChildren<Animator>();
         vulnerable = true;
+        Time.timeScale=1;
     }
 
     void FixedUpdate()
@@ -60,13 +65,17 @@ public class CtrlJugador : MonoBehaviour
     public void FinJuego()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(menuPrincipal);
+        panelFin.SetActive(true);
+        Time.timeScale=0;
+        audioSource.PlayOneShot(sonidoFin);
+        
     }
 
     public void QuitarVida()
     {
         if (vulnerable)
         {
+            audioSource.PlayOneShot(audioClip);
             vulnerable = false;
             numVidas--;
             if (numVidas == 0)
@@ -85,5 +94,12 @@ public class CtrlJugador : MonoBehaviour
     public void IncrementarPuntos(int puntos)
     {
         puntuacion += puntos;
+    }
+
+    public void Menu()
+    {
+        Time.timeScale=1;
+        SceneManager.LoadScene(menuPrincipal);
+
     }
 }

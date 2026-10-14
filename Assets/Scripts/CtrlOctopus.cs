@@ -6,7 +6,9 @@ public class CtrlOctopus : MonoBehaviour
     [SerializeField] private Vector3 posicionFin;
     private Vector3 posicionInicio;
     [SerializeField] bool moviendoAFin;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public AudioSource colision;
+    
     void Start()
     {
         posicionInicio = transform.position;
@@ -28,9 +30,11 @@ public class CtrlOctopus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CtrlJugador>().QuitarVida();
+            
         }
     }
 }

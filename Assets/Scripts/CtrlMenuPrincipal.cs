@@ -8,16 +8,16 @@ public class CtrlMenuPrincipal : MonoBehaviour
 
     void Start()
     {
+
         panelCreditos.SetActive(false);
     }
 
-    //Botón Jugar: carga la escena del juego
+
     public void Jugar()
     {
         SceneManager.LoadScene(escenaJuego);
     }
 
-    //Botón Salir: cierra el juego
     public void Salir()
     {
         Debug.Log("Salir del juego");
@@ -28,13 +28,12 @@ public class CtrlMenuPrincipal : MonoBehaviour
 #endif
     }
 
-    //Botón Créditos: muestra el panel
+   
     public void MostrarCreditos()
     {
         panelCreditos.SetActive(true);
     }
 
-    //Botón Volver: oculta el panel
     public void OcultarCreditos()
     {
         panelCreditos.SetActive(false);

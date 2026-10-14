@@ -7,7 +7,8 @@ public class CtrlCangrejo : MonoBehaviour
     [SerializeField] private Vector3 posicionFin;
     private Vector3 posicionInicio;
     [SerializeField] bool moviendoAFin;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    public AudioSource colision;
     void Start()
     {
         posicionInicio = transform.position;
@@ -32,6 +33,7 @@ public class CtrlCangrejo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CtrlJugador>().QuitarVida();
+            
         }
     }
     }
