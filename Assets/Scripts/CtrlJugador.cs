@@ -13,11 +13,12 @@ public class CtrlJugador : MonoBehaviour
     [SerializeField] private string menuPrincipal = "Menu Principal";
     [SerializeField] private GameObject panelFin;
     [SerializeField] CtrlHuD hud;
+    public AudioSource musicaFondo;
     private Animator animacion;
     private bool vulnerable;
     
     public AudioSource audioSource;
-    public AudioClip audioClip;
+    public AudioClip sonidoDaño;
     public AudioClip sonidoFin;
 
     void Awake()
@@ -70,6 +71,7 @@ public class CtrlJugador : MonoBehaviour
         panelFin.SetActive(true);
         Time.timeScale=0;
         audioSource.PlayOneShot(sonidoFin);
+        musicaFondo.volume = 0.1f;
         
     }
 
@@ -77,7 +79,7 @@ public class CtrlJugador : MonoBehaviour
     {
         if (vulnerable)
         {
-            audioSource.PlayOneShot(audioClip);
+            audioSource.PlayOneShot(sonidoDaño);
             vulnerable = false;
             numVidas--;
             hud.SetvidasTxt(numVidas);
